@@ -1,36 +1,78 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Estructura de carpetas
 ```
+project-root/
+├── prisma/                     # Archivos relacionados con Prisma
+│   ├── schema.prisma           # Esquema de la base de datos
+│   └── migrations/             # Migraciones de la base de datos
+├── public/                     # Archivos estáticos accesibles públicamente
+│   └── assets/                 # Imágenes y otros recursos
+├── src/
+│   ├── app/                    # App Router de Next.js (páginas y API)
+│   │   ├── (auth)/                # Páginas del frontend que se muestran si el usuario está registrado
+│   │   │   ├── admin/
+│   │   │   │   ├── page.tsx
+│   │   │   ├── dashboard/
+│   │   │   │   ├── page.tsx
+│   │   │   ├── eventos/        # Páginas relacionadas con eventos
+│   │   │   │   ├── page.tsx
+|   │   │   │   └── nuevo/
+│   |   │   │       ├── page.tsx    # Subruta para agregar un nuevo evento
+│   │   │   ├── gastos/         # Páginas relacionadas con gastos
+│   │   │   │   ├── page.tsx    # Página principal para ver gastos
+|   │   │   │   └── nuevo/
+│   |   │   │       ├── page.tsx    # Subruta para agregar un nuevo gasto
+│   │   │   ├── layout.tsx
+│   │   │   ├── middlewares.ts
+│   │   ├── api/                # Rutas del backend (microservicios)
+│   │   │   ├── auth/
+│   │   │   │   ├── [...nextauth]
+│   │   │   |   │   ├── route.ts  # Configuration autentication file with Google
+│   │   │   ├── gastos/
+│   │   │   │   ├── route.ts    # Endpoint de gestión de gastos
+│   │   │   └── eventos/
+│   │   │       ├── route.ts    # Endpoint de gestión de eventos
+│   │   ├── login/              # ruta para hacer el login / register
+│   │   │   ├── loginPage.tsx   # Página para hacer el login / register
+│   │   └── global.css          # CSS
+│   │   └── layout.tsx          # Layout principal de la aplicación
+│   │   └── page.tsx            # pagina principal de la aplicación
+│   │   └── provider.tsx        # el provider de next-auth
+│   ├── services/               # Lógica del backend (controladores, servicios)
+│   │   ├── gastos/
+│   │   │   ├── gastos.controller.ts
+│   │   │   ├── gastos.service.ts
+│   │   ├── eventos/
+│   │       ├── eventos.controller.ts
+│   │       ├── eventos.service.ts
+│   ├── config/                 # Configuración general
+│   │   ├── database.ts         # Configuración de Prisma (cliente)
+│   │   └── env.ts              # Variables de entorno
+│   ├── components/             # Componentes reutilizables de la UI
+│   │   ├── button.tsx          # boton de login / logout
+│   │   ├── navBar.tsx          # navbar
+│   │   ├── Header.tsx          # Encabezado común de la aplicación
+│   │   ├── Footer.tsx          # Pie de página
+│   │   ├── GastoForm.tsx       # Formulario para agregar gastos
+│   ├── middlewares/            # Middlewares globales del backend
+│   │   └── errorHandler.ts     # Middleware para manejo de errores
+│   ├── styles/                 # Estilos globales y variables CSS
+│   │   ├── globals.css         # Estilos globales
+│   │   └── variables.css       # Variables CSS (colores, tipografía)
+│   ├── utils/                  # Utilidades compartidas
+│   │   ├── formatDate.ts       # Formato de fechas
+│   │   └── logger.ts           # Logger genérico
+│   └── lib/                    # Código compartido entre backend y frontend
+│       └── prisma.ts           # Inicialización del cliente Prisma
+├── .env                        # Variables de entorno
+├── tsconfig.json               # Configuración de TypeScript
+├── next.config.js              # Configuración de Next.js
+├── package.json                # Dependencias y scripts
+└── README.md                   # Documentación del proyecto
+```
+# Diagrama entidad relación de la base de datos
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Hacerlo con una herramienta más piola
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![alt text](image.png)

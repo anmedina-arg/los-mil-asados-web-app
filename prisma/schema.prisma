@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// role "juanchila" is equal to role "admin"
+enum Role {
+  juanchila
+  user
+}
+
+model Usuario {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  correo      String   @unique
+  password    String?
+  image       String?
+  Role        Role     @default(user)
+  eventos     Evento[]
+}
+
+model Evento {
+  id           Int           @id @default(autoincrement())
+  nombre       String
+  fecha        DateTime
+  sede         String
+  usuarioId    Int
+  usuario      Usuario       @relation(fields: [usuarioId], references: [id])
+  asadoId      Int?
+  asado        Asado?        @relation(fields: [asadoId], references: [id])
+  participantes Participante[]
+  gastos       Gasto[]
+}
+
+model Asado {
+  id          Int      @id @default(autoincrement())
+  name        String
+  date        DateTime
+  eventos     Evento[]
+}
+
+model Participante {
+  id           Int           @id @default(autoincrement())
+  nombre       String
+  eventoId     Int
+  evento       Evento        @relation(fields: [eventoId], references: [id])
+}
+
+model Gasto {
+  id            Int           @id @default(autoincrement())
+  monto         Float
+  descripcion   String
+  tipoGastoId   Int
+  tipoGasto     TipoGasto     @relation(fields: [tipoGastoId], references: [id])
+  eventoId      Int
+  evento        Evento        @relation(fields: [eventoId], references: [id])
+}
+
+model TipoGasto {
+  id           Int            @id @default(autoincrement())
+  nombre       String
+  gastos       Gasto[]
+}
+
