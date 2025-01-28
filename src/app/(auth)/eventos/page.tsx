@@ -12,7 +12,7 @@ const EventosPage = async () => {
 			<div>soy eventos page</div>
 			<div className="flex flex-col">
 
-				{asados.map((asado: any) => <span>{`Asado ${asado.name}`}</span>)}
+				{asados.map((asado: any) => <span key={asado.name}>{`Asado ${asado.name}`}</span>)}
 			</div>
 		</>
 	)

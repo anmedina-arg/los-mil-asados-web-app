@@ -30,13 +30,15 @@ export async function POST(request: NextRequest) {
 	
 		return NextResponse.json(user)
 	} catch (error) {
-		return NextResponse.json(
-			{
-			message: error.message
-			}, {
-				status: 500
-			}
-		)
+		if (error instanceof Error) {
+					return NextResponse.json(
+						{
+						message: error.message
+						}, {
+							status: 500
+						}
+					)
+				}
 	}
 	
 }

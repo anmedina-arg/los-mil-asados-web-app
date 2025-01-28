@@ -1,13 +1,22 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { unknown } from 'zod';
 import Image from 'next/image';
+
+interface Usuario {
+	id: number;         // Identificador único
+	nombre: string;     // Nombre del usuario
+	correo: string;     // Correo único del usuario
+	password?: string;  // Contraseña (opcional)
+	image?: string;     // Imagen (opcional)
+	Role: 'user' | 'admin';  // Rol del usuario (asumiendo que solo hay 'user' y 'admin')
+	//eventos: Evento[];  // Relación con la entidad Evento (si aplica)
+}
 
 const UsersPage = () => {
 	const { data: session } = useSession();
-	const [usuario, setUsuario] = useState(null);
-	const [error, setError] = useState(null);
+	const [usuario, setUsuario] = useState<Usuario | null>(null);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -18,8 +27,13 @@ const UsersPage = () => {
 				}
 				const data = await res.json();
 				setUsuario(data);
-			} catch (err) {
-				setError(err.message);
+			} catch (err: unknown) {
+				// Comprobar si err es una instancia de Error
+				if (err instanceof Error) {
+					setError(err.message); // Accedemos de manera segura a 'message'
+				} else {
+					setError('Ha ocurrido un error desconocido.');
+				}
 			}
 		};
 
@@ -45,7 +59,7 @@ const UsersPage = () => {
 			{usuario ? (
 				<>
 					<pre>{JSON.stringify(usuario, null, 2)}</pre>
-					<Image src={`${usuario.image}`} width={100} height={100} alt='imagen de usuario' />
+					<Image src={`${usuario.image}`} width={100} height={100} alt="imagen de usuario" />
 				</>
 			) : (
 				<p>Cargando información del usuario...</p>

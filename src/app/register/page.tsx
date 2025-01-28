@@ -44,7 +44,7 @@ const RegisterPage = () => {
 		<div className='bg-black flex flex-col min-h-screen items-center justify-center p-4 gap-4'>
 			<Image src={logo} alt="logo" priority={true} />
 			<RegisterForm />
-			<span className='text-white first-letter:uppercase m-2'>Que paja... vamos con Google noma'</span>
+			<span className='text-white first-letter:uppercase m-2'>Que paja... vamos con Google noma&apos;</span>
 			<ButtonLogin action='loguin' variant='primary' />
 		</div>
 	);
