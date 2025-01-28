@@ -1,12 +1,12 @@
 'use client'
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import Button from "./ui/button";
+import ButtonLogin from "./ui/buttonLogin";
 
 const Navbar = () => {
 
 	const { data: session } = useSession();
-	console.log(session)
+	console.log("aqui navbar", session)
 
 	return (
 		<nav className="flex justify-between items-center h-16 bg-inherit text-white relative w-full border-solid border-red-500 border-2 ">
@@ -22,10 +22,13 @@ const Navbar = () => {
 			<Link href="/gastos">
 				Gastos
 			</Link>
+			<Link href="/users">
+				Usuarios
+			</Link>
 
 			{session?.user &&
 				<>
-					<Button label="salir" variant="logout" />
+					<ButtonLogin action="logout" variant="primary" />
 				</>
 			}
 

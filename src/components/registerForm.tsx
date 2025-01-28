@@ -2,6 +2,7 @@ import { registerSchema } from "@/validationSchemas/registerSchema"
 import Form from "./ui/form"
 import Input from "./ui/input"
 import { useRouter } from "next/navigation";
+import Button from "./ui/buton";
 
 const RegisterForm = () => {
 	const router = useRouter()
@@ -28,8 +29,8 @@ const RegisterForm = () => {
 			<Input label="userName" name="userName" />
 			<Input label="email" name="email" />
 			<Input label="password" name="password" />
-
-			<button className="text-white rounded-3xl border-solid border-2 border-white p-4" type="submit">Submit</button>
+			<br />
+			<Button variant="primary" label="Submit" type="submit" />
 		</Form>
 	)
 };

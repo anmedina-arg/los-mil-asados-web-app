@@ -1,11 +1,11 @@
-import Button from "@/components/ui/button";
+import ButtonLogin from "@/components/ui/buttonLogin";
 
 const AdminPage = () => {
 
 	return (
 		<>
 			<div>soy admin page</div>
-			<Button variant="logout" label="logout" />
+			<ButtonLogin action="logout" variant="primary" />
 		</>
 	)
 };

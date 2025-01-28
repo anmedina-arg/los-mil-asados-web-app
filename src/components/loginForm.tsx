@@ -4,6 +4,7 @@ import Form from "./ui/form"
 import Input from "./ui/input"
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Button from "./ui/buton";
 
 const LoginForm = () => {
 	const router = useRouter()
@@ -28,8 +29,9 @@ const LoginForm = () => {
 		<Form onSubmit={onSubmit} validationSchema={loginSchema}>
 			<Input label="email" name="email" />
 			<Input label="password" name="password" />
-
-			<button className="text-white rounded-3xl border-solid border-2 border-white p-4" type="submit">Login</button>
+			<p className="text-white text-xs text-end mt-2">Olvidé mi contraseña</p>
+			<br />
+			<Button variant="primary" label="login" type="submit" />
 		</Form>
 	)
 };

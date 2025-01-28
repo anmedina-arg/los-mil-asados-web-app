@@ -21,13 +21,13 @@ const Form = <T extends FieldValues>({ defaultValues, children, onSubmit, valida
 
 	return (
 		<FormProvider {...methods}>
-			<form onSubmit={handleSubmit(handleFormSubmit)}>
+			<form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
 				{React.Children.map(children, (child) => {
 					return React.isValidElement(child) && child.props.name
 						? React.createElement(child.type, {
 							...{
 								...child.props,
-								register: methods.register, // <-- is not necessary to pass register methods, Input component could conect to register by itself
+								//register: methods.register, // <-- is not necessary to pass register methods, Input component could conect to register by itself
 								key: child.props.name,
 								error: formState.errors[child.props.name]?.message,
 							},

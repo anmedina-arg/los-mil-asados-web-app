@@ -27,6 +27,6 @@ export const config = {
     "/dashboard", // Ajusta las rutas según tu estructura.
     "/admin",
     "/eventos",
-    "/gastos",
+    "/gastos"
   ],
 };

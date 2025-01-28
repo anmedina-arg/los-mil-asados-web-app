@@ -1,11 +1,7 @@
-// import { handlers } from "../../../../../auth" // Referring to the auth.ts we just created
-// export const { GET, POST } = handlers
-
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials"
-import {prisma} from '@/lib/prisma'
-import { pages } from "next/dist/build/templates/app-page";
+import { prisma } from '@/lib/prisma'
 
 export const authOptions = {
   providers: [
@@ -32,8 +28,6 @@ export const authOptions = {
 
         if (!matchPassword) throw new Error("wrong passpord")
         
-        console.log("tipo de dato", typeof userFound.id)
-
         return {
           id: userFound.id.toString(),
           name: userFound.nombre,
@@ -44,7 +38,36 @@ export const authOptions = {
   ],
   pages: {
     signIn: "/login"
-  }
+  },
+  callbacks: {
+    async signIn({ user, account, profile }: { user: any; account: any; profile?: any }) {
+      if (account.provider === "google") {
+        try {
+          // Verificar si el usuario ya existe en la base de datos
+          const existingUser = await prisma.usuario.findUnique({
+            where: { correo: user.email || "" },
+          });
+
+          // Si no existe, crearlo en la base de datos
+          if (!existingUser) {
+            await prisma.usuario.create({
+              data: {
+                nombre: profile?.name || "Google User",
+                correo: user.email || "",
+                Role: "user",
+                image: user.image || "", // Guardar la foto de perfil
+              },
+            });
+          }
+        } catch (error) {
+          console.error("Error al manejar el registro con Google:", error);
+          return false; // Si ocurre un error, evitar que el usuario acceda
+        }
+      }
+
+      return true; // Permitir el acceso del usuario
+    },
+  },
 }
 
 const handler = NextAuth(authOptions)

@@ -3,11 +3,10 @@ import Image from 'next/image';
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import logo from '../../assets/los1000png_logo.webp';
-import Button from '@/components/ui/button';
-import RegisterForm from '@/components/registerForm';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import ButtonLogin from '@/components/ui/buttonLogin';
 import LoginForm from '@/components/loginForm';
 import Link from 'next/link';
+import instagramIcon from '@/assets/instagram.png'
 
 const LoginPage = () => {
 	const { data: session, status } = useSession();
@@ -43,13 +42,27 @@ const LoginPage = () => {
 
 
 	return (
-		<div className='bg-black flex flex-col min-h-screen items-center justify-center p-4 gap-4'>
+		<div className='flex flex-col min-h-screen items-center justify-center p-4 gap-4'>
 			<Image src={logo} alt="logo" priority={true} />
+
 			<LoginForm />
-			<Link className="text-white rounded-3xl border-solid border-2 border-white p-4" href='/register'>
+
+			<Link className="text-black bg-white rounded-md border-solid border-2 border-gray-500 p-2 w-full first-letter:uppercase font-medium text-center" href='/register'>
 				Registrarse
 			</Link>
-			<Button label='ingresar con google' variant='loguin' />
+
+			<ButtonLogin action='loguin' variant='primary' />
+
+			<br />
+			<br />
+
+			<div className='flex flex-col text-[#E1306C] items-center justify-center'>
+				<Link href="https://www.instagram.com/los1000asadostuc/" title="logotipo de instagram iconos" >
+					<Image src={instagramIcon} alt='instagram logo' className='self-end  w-10 h-10' />
+				</Link>
+				<span>@los1000asadostuc</span>
+			</div>
+
 		</div>
 	);
 };
