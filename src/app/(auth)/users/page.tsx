@@ -42,8 +42,8 @@ const UsersPage = () => {
 		}
 	}, [session]);
 
-	console.log('Sesión:', session);
-	console.log('Usuario:', usuario);
+	// console.log('Sesión:', session);
+	// console.log('Usuario:', usuario);
 
 	if (!session) {
 		return <div className="text-white">Por favor, inicia sesión para ver esta página.</div>;

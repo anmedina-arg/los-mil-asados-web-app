@@ -12,7 +12,7 @@ const LoginPage = () => {
 	const { data: session, status } = useSession();
 	const router = useRouter();
 
-	console.log("session", session)
+	// console.log("session", session)
 
 	const onSubmit = async (e: any) => {
 		//console.log("data", e);
@@ -25,7 +25,7 @@ const LoginPage = () => {
 		})
 
 		const resJSON = await res.json()
-		console.log(resJSON)
+		// console.log(resJSON)
 		if (res.ok) {
 			router.push('./dashboard')
 		}
@@ -34,7 +34,7 @@ const LoginPage = () => {
 	if (status === "loading") return (<div>Loading...</div>)
 
 	if (session) {
-		console.log("aqui", session)
+		// console.log("aqui", session)
 		onSubmit(session.user)
 		router.push("/dashboard"); // Redirige a la página protegida tras iniciar sesión.
 		return null;

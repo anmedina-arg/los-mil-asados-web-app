@@ -10,13 +10,13 @@ const LoginForm = () => {
 	const router = useRouter()
 
 	const onSubmit = async (e: any) => {
-		console.log("login", e)
+		// console.log("login", e)
 		const res = await signIn('credentials', {
 			email: e.email,
 			password: e.password,
 			redirect: false
 		})
-		console.log("la respuesta", res)
+		// console.log("la respuesta", res)
 
 		if (res?.error) {
 			alert('ideai')

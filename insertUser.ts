@@ -28,7 +28,7 @@ async function main() {
       },
     });
 
-    console.log('Usuario creado:', newUser);
+    // console.log('Usuario creado:', newUser);
   } catch (error) {
     console.error('Error al crear el usuario:', error);
   } finally {

@@ -18,7 +18,7 @@ const RegisterForm = () => {
 		})
 
 		const resJSON = await res.json()
-		console.log(resJSON)
+		// console.log(resJSON)
 		if (res.ok) {
 			router.push('/login')
 		}
