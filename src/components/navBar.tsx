@@ -10,14 +10,19 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 const Navbar = () => {
 
 	const { data: session } = useSession();
-	// console.log("aqui navbar", session)
+	console.log("aqui navbar", session)
 
 	return (
-		<nav className="flex justify-between absolute bottom-0 items-center h-16 w-screen bg-inherit text-white border-solid border-red-500 border-2 ">
-			<Link className='flex flex-col items-center justify-center' href="/admin">
-				<FaUserShield />
-				Admin
-			</Link>
+		<nav className="flex justify-between relative bottom-0 items-center h-16 w-screen bg-inherit text-white px-2 border-t-2 border-white border-solid">
+			{
+				session?.user.role === 'juanchila' ?
+					<Link className='flex flex-col items-center justify-center' href="/admin">
+						<FaUserShield />
+						Admin
+					</Link>
+					:
+					null
+			}
 			<Link className='flex flex-col items-center justify-center' href="/dashboard">
 				<FaChartPie />
 				Dashboard
@@ -34,11 +39,11 @@ const Navbar = () => {
 				Usuarios
 			</Link> */}
 
-			{/* {session?.user &&
+			{session?.user &&
 				<>
 					<ButtonLogin action="logout" variant="primary" />
 				</>
-			} */}
+			}
 
 		</nav>
 	);

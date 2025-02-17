@@ -5,7 +5,7 @@ const AdminPage = () => {
 	return (
 		<>
 			<div>soy admin page</div>
-			<ButtonLogin action="logout" variant="primary" />
+			{/* <ButtonLogin action="logout" variant="primary" /> */}
 		</>
 	)
 };

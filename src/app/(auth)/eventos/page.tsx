@@ -11,7 +11,7 @@ const EventosPage = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			setIsLoading(true);
-			const response = await fetch(`/api/asados?page=${page}&limit=10`);
+			const response = await fetch(`/api/asados?page=${page}&limit=5`);
 			const data = await response.json();
 
 			setAsados(data.data);
@@ -29,7 +29,7 @@ const EventosPage = () => {
 
 	return (
 		<div>
-			<h1>Listado de Asados</h1>
+			<h1 className="text-white">Listado de Asados</h1>
 			{isLoading ? (
 				<p>Cargando...</p>
 			) : (
@@ -43,13 +43,15 @@ const EventosPage = () => {
 					{/* 🔹 2️⃣ Controles de paginación */}
 					<div>
 						<button
+							className="text-white px-2 border-solid border-2 border-white"
 							disabled={page === 1}
 							onClick={() => setPage(page - 1)}
 						>
 							Anterior
 						</button>
-						<span>Página {page} de {totalPages}</span>
+						<span className="text-white px-2">Página {page} de {totalPages}</span>
 						<button
+							className="text-white px-2 border-solid border-2 border-white"
 							disabled={page === totalPages}
 							onClick={() => setPage(page + 1)}
 						>

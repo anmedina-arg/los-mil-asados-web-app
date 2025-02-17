@@ -7,7 +7,7 @@ export default function RootLayout({
 }) {
 	return (
 		<main className='h-screen w-screen flex flex-col' lang="en">
-			<div className="flex flex-grow bg-green-400 w-screen">
+			<div className="flex flex-grow w-screen overflow-scroll">
 				{children}
 			</div>
 			<Navbar />
