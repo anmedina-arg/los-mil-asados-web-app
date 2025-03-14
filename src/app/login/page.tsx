@@ -42,7 +42,7 @@ const LoginPage = () => {
 
 
 	return (
-		<div className='flex flex-col min-h-screen items-center justify-center p-4 gap-4'>
+		<div className='flex flex-col h-dvh items-center justify-center p-4 gap-4'>
 			<Image src={logo} alt="logo" priority={true} />
 
 			<LoginForm />

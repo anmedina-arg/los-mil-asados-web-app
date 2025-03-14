@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+<details>
+  <summary>Cómo instalar el proyecto</summary>
+  
+  Aquí va el texto que se muestra cuando el título es expandido. Puedes incluir las instrucciones de instalación o cualquier otro detalle relevante.
+
+</details>
+
 # Estructura de carpetas
 
 ```
@@ -6801,6 +6808,7 @@ year: "2-digit",
 });
 
 return (
+
 <div>
 <h3>Asado {number}</h3>
 <span>{formattedDate}</span>
@@ -6833,6 +6841,7 @@ export const Card = ({ number, date }: CardProps) => {
 const formattedDate = format(new Date(date), "dd/MM/yy", { locale: es });
 
 return (
+
 <div>
 <h3>Asado {number}</h3>
 <span>{formattedDate}</span>
@@ -6968,6 +6977,7 @@ const dateUTC = parseISO(date); // Convierte el string ISO a Date en UTC
 const formattedDate = format(dateUTC, "dd/MM/yy"); // Formatea correctamente en UTC
 
 return (
+
 <div>
 <h3>Asado {number}</h3>
 <span>{formattedDate}</span>
