@@ -12,7 +12,7 @@ type FormProps<T extends FieldValues> = {
 
 const Form = <T extends FieldValues>({ defaultValues, children, onSubmit, validationSchema }: FormProps<T>) => {
 	const methods = useForm<T>({ resolver: zodResolver(validationSchema), defaultValues });
-	const { handleSubmit, formState, reset } = methods;
+	const { handleSubmit, formState, reset, control } = methods;
 
 	const handleFormSubmit: SubmitHandler<T> = async (data) => {
 		await onSubmit(data);
@@ -30,6 +30,7 @@ const Form = <T extends FieldValues>({ defaultValues, children, onSubmit, valida
 								//register: methods.register, // <-- is not necessary to pass register methods, Input component could conect to register by itself
 								key: child.props.name,
 								error: formState.errors[child.props.name]?.message,
+								control, // aqui le paso el control a los hijos
 							},
 						})
 						: child;

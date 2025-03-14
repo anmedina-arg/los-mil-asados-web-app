@@ -36,7 +36,7 @@ const EventosPage = () => {
 				<>
 					<div className="flex flex-col">
 						{asados.map((asado: any) => (
-							<Card key={asado.name} number={asado.name} date={asado.date} />
+							<Card key={asado.name} number={asado.name} date={asado.date} asadoId={asado.id} />
 						))}
 					</div>
 

@@ -10,12 +10,11 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 const Navbar = () => {
 
 	const { data: session } = useSession();
-	console.log("aqui navbar", session)
 
 	return (
 		<nav className="flex justify-between relative bottom-0 items-center h-16 w-screen bg-inherit text-white px-2 border-t-2 border-white border-solid">
 			{
-				session?.user.role === 'juanchila' ?
+				session?.user.role === 'user' ?
 					<Link className='flex flex-col items-center justify-center' href="/admin">
 						<FaUserShield />
 						Admin
