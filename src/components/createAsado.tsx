@@ -6,6 +6,7 @@ import { crearAsadoSchema } from "@/validationSchemas/crearAsadoSchema";
 import Button from "./ui/buton";
 import Select from "./ui/select";
 import InputNumber from "./ui/inputNumber";
+import { User } from '../types/user';
 
 export const CrearEvento = () => {
 	/*
@@ -22,7 +23,7 @@ id           Int           @id @default(autoincrement())
 	*/
 	const usuarioId = '1'; // Temporalmente estático
 
-	const [usuarios, setUsuarios] = useState([])
+	const [usuarios, setUsuarios] = useState<User[]>([])
 
 	const [asados, setAsados] = useState([]);
 	const [page, setPage] = useState(1);
@@ -47,7 +48,7 @@ id           Int           @id @default(autoincrement())
 
 		const fetchUsers = async () => {
 			const responseUsers = await fetch('/api/users')
-			const dataUsers = await responseUsers.json()
+			const dataUsers: User[] = await responseUsers.json()
 			console.log("dataUsers", dataUsers)
 
 			setUsuarios(dataUsers)
