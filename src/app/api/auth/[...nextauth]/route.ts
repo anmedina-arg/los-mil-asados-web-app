@@ -29,7 +29,7 @@ export const authOptions = {
         if (!matchPassword) throw new Error('wrong passpord');
 
         return {
-          id: userFound.id.toString(),
+          id: userFound.id,
           name: userFound.nombre,
           email: userFound.correo,
         };
@@ -79,11 +79,12 @@ export const authOptions = {
       if (session?.user?.email) {
         const dbUser = await prisma.usuario.findUnique({
           where: { correo: session.user.email },
-          select: { Role: true },
+          select: { Role: true, id: true },
         });
 
         if (dbUser) {
           session.user.role = dbUser.Role; // Agregar el rol a la sesión
+          session.user.id = dbUser.id; // agrega el id a la sesion
         }
       }
 

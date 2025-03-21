@@ -1,18 +1,6 @@
 import { z } from 'zod';
 
-/*
-** nombre       String
-**  fecha        DateTime
-**  sede         String
-  usuarioId    Int
-  usuario      Usuario       @relation(fields: [usuarioId], references: [id])
-  asadoId      Int?
-  asado        Asado?        @relation(fields: [asadoId], references: [id])
-  participantes Participante[]
-  gastos       Gasto[]
-*/
-
-export const crearAsadoSchema = z.object({
+export const newAsadoSchema = z.object({
   nombre: z
     .string()
     .min(10, {
@@ -30,6 +18,6 @@ export const crearAsadoSchema = z.object({
     .max(50, {
       message: 'La sede debe tener menos de 50 caracteres',
     }),
-  usuarioId: z.string(),
-  asadoId: z.number().nullable(),
+  usuarioId: z.string().optional(),
+  asadoId: z.string().optional(),
 });

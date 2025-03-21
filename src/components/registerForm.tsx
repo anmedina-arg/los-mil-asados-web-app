@@ -8,7 +8,6 @@ const RegisterForm = () => {
 	const router = useRouter()
 
 	const onSubmit = async (e: any) => {
-		//console.log("data", e);
 		const res = await fetch('/api/auth/register', {
 			method: 'POST',
 			body: JSON.stringify(e),
@@ -18,9 +17,8 @@ const RegisterForm = () => {
 		})
 
 		const resJSON = await res.json()
-		// console.log(resJSON)
 		if (res.ok) {
-			router.push('/login')
+			router.push('/dashboard')
 		}
 	}
 

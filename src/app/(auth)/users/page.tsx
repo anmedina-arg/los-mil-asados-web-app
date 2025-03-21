@@ -2,20 +2,11 @@
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-
-interface Usuario {
-	id: number;         // Identificador único
-	nombre: string;     // Nombre del usuario
-	correo: string;     // Correo único del usuario
-	password?: string;  // Contraseña (opcional)
-	image?: string;     // Imagen (opcional)
-	Role: 'user' | 'admin';  // Rol del usuario (asumiendo que solo hay 'user' y 'admin')
-	//eventos: Evento[];  // Relación con la entidad Evento (si aplica)
-}
+import { User } from '@/types/user';
 
 const UsersPage = () => {
 	const { data: session } = useSession();
-	const [usuario, setUsuario] = useState<Usuario | null>(null);
+	const [usuario, setUsuario] = useState<User | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
@@ -41,9 +32,6 @@ const UsersPage = () => {
 			fetchUser();
 		}
 	}, [session]);
-
-	// console.log('Sesión:', session);
-	// console.log('Usuario:', usuario);
 
 	if (!session) {
 		return <div className="text-white">Por favor, inicia sesión para ver esta página.</div>;

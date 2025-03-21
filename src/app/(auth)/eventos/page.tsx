@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Card } from "@/components/card";
+import ButtonLink from "@/components/ui/buttonLink";
 
 const EventosPage = () => {
 	const [asados, setAsados] = useState([]);
@@ -18,7 +19,6 @@ const EventosPage = () => {
 			setTotalPages(data.totalPages);
 			setIsLoading(false);
 
-			// 🔹 1️⃣ Establecer la página inicial basada en `defaultPage`
 			if (page === 1 && data.defaultPage) {
 				setPage(data.defaultPage);
 			}
@@ -30,6 +30,7 @@ const EventosPage = () => {
 	return (
 		<div>
 			<h1 className="text-white">Listado de Asados</h1>
+			<ButtonLink to='/eventos/newEvent' label="crear evento" variant="primary" />
 			{isLoading ? (
 				<p>Cargando...</p>
 			) : (
@@ -40,10 +41,9 @@ const EventosPage = () => {
 						))}
 					</div>
 
-					{/* 🔹 2️⃣ Controles de paginación */}
 					<div>
 						<button
-							className="text-white px-2 border-solid border-2 border-white"
+							className="border-2 border-solid border-white text-white px-2"
 							disabled={page === 1}
 							onClick={() => setPage(page - 1)}
 						>
@@ -51,7 +51,7 @@ const EventosPage = () => {
 						</button>
 						<span className="text-white px-2">Página {page} de {totalPages}</span>
 						<button
-							className="text-white px-2 border-solid border-2 border-white"
+							className="border-2 border-solid border-white text-white px-2"
 							disabled={page === totalPages}
 							onClick={() => setPage(page + 1)}
 						>
