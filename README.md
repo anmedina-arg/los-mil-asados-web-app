@@ -782,10 +782,10 @@ Cuando haces cambios en tu archivo schema.prisma, como agregar un campo con un v
 1. Actualizar la base de datos con los nuevos cambios
    Usa el comando de migración para aplicar los cambios a la base de datos existente:
 
-bash
-Copiar
-Editar
+```bash
 npx prisma migrate dev --name add_roles_to_user
+```
+
 Este comando:
 
 Crea un archivo de migración que describe los cambios (en este caso, la adición del campo roles con un valor por defecto).
